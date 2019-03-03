@@ -1,0 +1,25 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column,String,Numeric,Integer,Boolean
+
+engine=create_engine("mysql+pymysql://root:@localhost/ecom",echo=True)
+Session=sessionmaker(bind=engine)
+Base=declarative_base()
+
+class Product(Base):
+   __tablename__="product"
+   title=Column('title',String(32),primary_key=True)
+   quantity=Column('quantity',Integer)
+   def __init__(self,title,quant):
+      self.title=title
+      self.quantity=quant
+
+Base.metadata.create_all(engine)
+session=Session()
+
+lux=Product('Lyril',9)
+session.add(lux)
+session.commit()
+session.close()
+

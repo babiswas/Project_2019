@@ -1,0 +1,63 @@
+SQLAlchemy:
+----------
+SQLAlchemy is an ORM.
+Python classes can be mapped to the database.
+
+import sqlalchemy
+sqlalchemy.__version__
+
+To get the version of the sqlalchemy.
+
+from sqlalchemy import create_engine
+engine=create_engine("mysql+pymysql://root:@localhost/ecom",echo=True)
+
+Some important method of the engine class are:
+1.connect()
+2.execute()
+3.begin()
+4.dispose()
+5.table_names()
+6.transaction()
+
+from sqlalchemy import MetaData
+meta=MetaData()
+
+from sqlalchemy import Table,Column,Integer,String,MetaData
+
+meta=MetaData()
+students=Table('students',meta,Column('id',Integer,primary_key=True),Column('name',String),Column('lastname',String),)
+meta.create_all(engine)
+
+The create all function uses the engine object.
+
+
+from sqlalchemy import create_engine,MetaData,Table,Column,Integer,String
+engine=create_engine('sqlite:///college.db',echo=True)
+meta=MetaData()
+students=Table('students',meta,Column('id',Integer,primary_key=True),Column('name',String),Column('lastname',String),)
+meta.create_all(engine)
+
+create table students(id Integer NOT NULL,name varchar,lastname VARCHAR,PRIMARY KEY(ID))
+college.db
+
+
+SQLalchemy Core-SQL Expressions
+
+conn=engine.connect()
+ins=students.insert().values(name='RAVI',lastname='Kapoor')
+result=conn.execute(ins)
+
+
+from sqlalchemy import create_engine,Metadata,Table,Column,Integer,String
+engine=create_engine("sqlite:///college.db",echo=True)
+students=Table('students',meta,Column('id',Integer,primary_key=True),Column('name',String),Column('lastname',String),)
+ins=students.insert().values(name='Ravi',lastname='Kapoor')
+conn=engine.connect()
+result=conn.execute(ins)
+
+result.inserted_primary_key
+
+conn.execute(students.insert(),[
+{'name':'Bapan','lastname':'Biswas1'},{'name':'Bapan2','lastname':'Biswas1'},{'name':'Bapan3','lastname':'Biswas1'}])
+
+
