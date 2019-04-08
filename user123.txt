@@ -1,0 +1,1 @@
+https://web.archive.org/web/20160827123000/http://stackoverflow.com/documentation/django/1209/extending-or-substituting-user-model/4050/custom-user-model-with-email-as-primary-login-field#t=201608271230006399213
